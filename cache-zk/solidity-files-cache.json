@@ -1,0 +1,44 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/macbookpro/BlockchainPlayYard/BlockchainProjects/simple-calculator-v2/contracts/SimpleCalculator.sol": {
+      "lastModificationDate": 1675404591456,
+      "contentHash": "309049697f138150a9ea210842a5a140",
+      "sourceName": "contracts/SimpleCalculator.sol",
+      "solcConfig": {
+        "version": "0.8.16",
+        "settings": {
+          "optimizer": {
+            "enabled": true
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        },
+        "zksolc": {
+          "version": "1.2.2",
+          "compilerSource": "binary",
+          "settings": {
+            "compilerPath": "",
+            "experimental": {}
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "SimpleCalculator"
+      ]
+    }
+  }
+}

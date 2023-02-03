@@ -1,23 +1,44 @@
-import { ethers } from "hardhat";
+import { Wallet, utils } from "zksync-web3";
+import * as ethers from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+import "dotenv/config";
 
-async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+export default async function (hre: HardhatRuntimeEnvironment) {
+  console.log(`Running deployment script for Simple Calculator contract`);
 
-  const lockedAmount = ethers.utils.parseEther("1");
+  //Initialize the wallet
+  const wallet = new Wallet(`${process.env.PRIVATE_KEY}`);
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  //Create deployer object and load artifact
+  const deployer = new Deployer(hre, wallet);
+  const artifact = await deployer.loadArtifact("SimpleCalculator");
 
-  await lock.deployed();
+  //Estimate contract deployment
+  const number = 0;
+  const deploymentFee = await deployer.estimateDeployFee(artifact, [number]);
 
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+  //Deposite funds to L2
+  const DepositeHandle = await deployer.zkWallet.deposit({
+    to: deployer.zkWallet.address,
+    token: utils.ETH_ADDRESS,
+    amount: deploymentFee.mul(2),
+  });
+  //Wait for deposite
+  await DepositeHandle.wait();
+
+  //Deploy contract
+  const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
+  console.log(`Estimated deployment cost is ${parsedFee} ETH`);
+
+  //Get constructor args for verification
+  const simpleCalculatorContract = await deployer.deploy(artifact, [number]);
+  console.log(
+    "constructor args:" +
+      simpleCalculatorContract.interface.encodeDeploy([number])
+  );
+
+  //Get contract info
+  const contractAddress = simpleCalculatorContract.address;
+  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
 }
-
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});

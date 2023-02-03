@@ -6,6 +6,10 @@ pragma solidity ^0.8.9;
 contract SimpleCalculator {
    int256 private result;
 
+   constructor(int256 _number) {
+       result = _number;
+   }
+
     function equals() public view returns (int256) {
         return result;
     }

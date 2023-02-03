@@ -11,6 +11,7 @@
     "zksync-web3": "^0.12.5"
   },
   "dependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^2.0.1"
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "dotenv": "^16.0.3"
   }
 }

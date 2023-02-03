@@ -1,8 +1,25 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 
-const config: HardhatUserConfig = {
-  solidity: "0.8.17",
-};
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
-export default config;
+module.exports = {
+  zksolc: {
+    version: "1.2.2",
+    compilerSource: "binary",
+    settings: {},
+  },
+  defaultNetwork: "zkSyncTestnet",
+
+  networks: {
+    zkSyncTestnet: {
+      url: "https://zksync2-testnet.zksync.dev",
+      ethNetwork: "goerli", // Can also be the RPC URL of the network (e.g. `https://goerli.infura.io/v3/<API_KEY>`)
+      zksync: true,
+    },
+  },
+  solidity: {
+    version: "0.8.16",
+  },
+};
