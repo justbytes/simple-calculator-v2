@@ -1,0 +1,18 @@
+nav {
+  background-color: hsl(167, 51%, 42%);
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.connect-wallet-btn {
+  border-radius: 5px;
+  font-size: 16px;
+  height: 60px;
+  margin-top: 7px;
+}
