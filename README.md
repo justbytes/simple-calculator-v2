@@ -13,7 +13,6 @@ https://cool-math-7566.on.fleek.co
 View the contract through the zkSync v2 Block Explorer!
 Contract address: 0xA3147b3860c6eC1fDc9434045Dd030cCE947c3c3
 
-Test it out here: https://cool-math-7566.on.fleek.co/
 
 ![projectPicture](./assets/images/calcDapp.png)
 
