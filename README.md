@@ -13,9 +13,9 @@ https://cool-math-7566.on.fleek.co
 View the contract through the zkSync v2 Block Explorer!
 Contract address: 0xA3147b3860c6eC1fDc9434045Dd030cCE947c3c3
 
-
-![projectPicture](./assets/images/calcDapp.png)
-
 ## Layer 1 version
 
 Check out the same DApp that is deployed to layer 1 to test out the transaction speed difference. Link to the [website](https://quiet-grass-6199.on.fleek.co) and [repo](https://github.com/justbytes/simple-calculator)
+
+
+![projectPicture](./assets/images/calcDapp.png)
